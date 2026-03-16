@@ -6,78 +6,136 @@
     <meta name="google-site-verification" content="d3j-caiEi-xZSuCROZhGW4TLxrnrx1e9qw1F3ZHuvtg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>无尽地下城 - Roguelike冒险">
+    <title>无尽地下城 - Roguelike冒险游戏</title>
+    <meta name="description" content="无尽地下城是一款免费的网页Roguelike冒险游戏。探索无限层数的地下城，打怪升级，收集装备，挑战BOSS！支持自动战斗，装备系统丰富，支持中英双语。">
+    <meta name="keywords" content="roguelike, 地下城, 冒险游戏, 网页游戏, 免费游戏, RPG">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6116167286369067" crossorigin="anonymous"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #e0e0e0;
+            padding: 40px 20px;
         }
-
         .game-container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.05);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 600px;
+            width: 100%;
         }
-
-        h1 {
-            color: #ffd700;
-            margin-bottom: 40px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
+        h1 { color: #ffd700; margin-bottom: 10px; font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .subtitle { color: #aaa; margin-bottom: 30px; font-size: 1em; }
         .game-card {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255,255,255,0.08);
             padding: 30px;
             border-radius: 15px;
             width: 100%;
-            max-width: 400px;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            margin: 0 auto;
+            border: 1px solid rgba(255,215,0,0.2);
+            margin: 0 auto 30px;
+            text-decoration: none;
+            display: block;
         }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            border-color: rgba(255, 215, 0, 0.5);
+        .game-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.3); border-color: rgba(255,215,0,0.5); }
+        .game-card h2 { color: #a855f7; margin-bottom: 10px; font-size: 1.8em; }
+        .game-card p { color: #aaa; font-size: 1em; line-height: 1.6; }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+            text-align: left;
         }
-
-        .game-card h2 {
-            color: #a855f7;
-            margin-bottom: 15px;
-            font-size: 1.8em;
+        .feature-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
         }
-
-        .game-card p {
-            color: #aaa;
-            font-size: 1.1em;
-            line-height: 1.6;
+        .feature-item h3 { color: #60a5fa; font-size: 0.95em; margin-bottom: 6px; }
+        .feature-item p { color: #999; font-size: 0.85em; line-height: 1.5; }
+        .footer {
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.85em;
         }
+        .footer a { color: #60a5fa; text-decoration: none; margin: 0 8px; }
+        .footer a:hover { text-decoration: underline; }
+        .description {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .description p { color: #bbb; font-size: 0.95em; line-height: 1.8; }
     </style>
 </head>
 <body>
     <div class="game-container">
         <h1>⚔️ 无尽地下城</h1>
-        <div class="game-card" onclick="window.location.href='roguelike/index.html'">
+        <p class="subtitle">Endless Dungeon — 免费网页 Roguelike 冒险游戏</p>
+
+        <a href="roguelike/index.html" class="game-card">
             <h2>🏰 开始冒险</h2>
-            <p>探索无限层数的地下城，打怪升级，收集装备，挑战BOSS！</p>
+            <p>进入地下城，探索无限层数，打怪升级，收集装备，挑战强力 BOSS！</p>
+        </a>
+
+        <div class="description">
+            <p>
+                《无尽地下城》是一款免费的网页 Roguelike 冒险游戏。
+                玩家将扮演一名勇者，深入无尽的地下城进行探索。
+                随着层数增加，怪物越来越强，装备越来越丰富，挑战也越来越高。
+                游戏支持自动战斗模式，让你轻松挂机升级，适合碎片化时间游玩。
+            </p>
+        </div>
+
+        <div class="features">
+            <div class="feature-item">
+                <h3>⚔️ 战斗系统</h3>
+                <p>回合制战斗，支持手动和自动模式，附带暴击、闪避、吸血等丰富属性</p>
+            </div>
+            <div class="feature-item">
+                <h3>🎒 装备系统</h3>
+                <p>8 个装备槽位，4 种稀有度（普通 / 优秀 / 稀有 / 传说），击败 BOSS 掉落装备</p>
+            </div>
+            <div class="feature-item">
+                <h3>✨ 法术系统</h3>
+                <p>10 种法术，升级自动解锁，战斗中自动释放攻击或治疗法术</p>
+            </div>
+            <div class="feature-item">
+                <h3>★ 遗物系统</h3>
+                <p>击败 BOSS 获得遗物，多种被动效果可叠加，强力提升战斗力</p>
+            </div>
+            <div class="feature-item">
+                <h3>🌐 中英双语</h3>
+                <p>支持中文和英文界面切换，随时一键切换语言</p>
+            </div>
+            <div class="feature-item">
+                <h3>💾 自动存档</h3>
+                <p>游戏进度自动保存在本地，关闭后重新打开可继续冒险</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="privacy.html">隐私政策</a>
+            <span>|</span>
+            <a href="https://github.com/devilmaycry19960807-coder" target="_blank">GitHub</a>
+            <br><br>
+            <span>© 2026 无尽地下城. 免费游玩，无需注册。</span>
         </div>
     </div>
 </body>
