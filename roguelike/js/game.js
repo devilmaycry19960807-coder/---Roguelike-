@@ -8,13 +8,9 @@ import { RARITY_COLORS, RARITY_NAMES, calculateEquipmentScore, EQUIPMENT } from 
 import { claimDailyReward, checkDailyReward, getDailyReward } from './dailyReward.js';
 import { equipObtainedItem } from './shop.js';
 import { getCurrentLanguage, translations } from './i18n.js';
+import { GAME_CONFIG } from './config.js';
 
 console.log('Game module loaded');
-
-// 重置存档（测试用）
-// clearSave();
-// resetGameState(false);
-// console.log('存档已重置');
 
 // 重置存档
 export function handleResetGame() {

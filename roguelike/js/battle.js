@@ -198,7 +198,8 @@ function attackMonster() {
 
     const stats = getTotalStats();
     const monster = gameState.monster;
-    const weapon = gameState.equipment.leftHand?.type === 'twoHand' ? gameState.equipment.leftHand : gameState.equipment.leftHand;
+    // 优先使用右手武器，如果没有则使用左手（双手武器放在左手）
+    const weapon = gameState.equipment.rightHand || gameState.equipment.leftHand || null;
 
     // 自动触发攻击法术（最高级攻击法术）
     autoCastAttackSpell(stats, monster);

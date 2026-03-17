@@ -116,7 +116,7 @@ function showChestModal(goldFound) {
     if (wasAuto) {
         gameState.isAutoBattle = false;
         const autoBtn = document.getElementById('autoBattleBtn');
-        if (autoBtn) autoBtn.textContent = '▶️ 开始自动战斗';
+        if (autoBtn) autoBtn.textContent = t.autoBattleBtn;  // 使用翻译而非硬编码
 
         // 重置探索标志
         import('./game.js').then(m => {

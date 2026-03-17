@@ -71,7 +71,7 @@ export const Monetization = {
     watchAdToRefreshShop: function(shopItems) {
         if (!AdProvider.isAdAvailable('rewarded')) {
             addLog('广告暂时不可用，稍后再试', 'info');
-            return shopItems;
+            return { refreshed: false, items: shopItems };
         }
 
         AdProvider.showRewardedAd({
@@ -85,6 +85,8 @@ export const Monetization = {
                 return { refreshed: false };
             }
         });
+        // 返回默认值（异步回调会覆盖）
+        return { refreshed: false, items: shopItems };
     },
 
     // 看广告获取额外金币
@@ -108,6 +110,8 @@ export const Monetization = {
                 return baseAmount;
             }
         });
+        // 返回默认值（异步回调会覆盖）
+        return baseAmount;
     },
 
     // 显示插屏广告（关键节点）

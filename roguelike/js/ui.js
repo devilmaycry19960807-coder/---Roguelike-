@@ -6,6 +6,7 @@ import { GAME_CONFIG } from './config.js';
 import { RARITY_COLORS } from './equipment.js';
 import { getCurrentLanguage, translations } from './i18n.js';
 import { getEquipmentTranslation, getArtifactTranslation, getSpellTranslation, getMonsterTranslation, getMonsterDescriptionTranslation } from './translations.js';
+import { calculateBatchMultiplier } from './exploration.js';
 
 export function updateUI() {
     const stats = getTotalStats();
@@ -269,6 +270,8 @@ export function updateButtonStates() {
     const inBattle = gameState.inBattle;
     const isAutoBattle = gameState.isAutoBattle;
     const stats = getTotalStats();
+    const lang = getCurrentLanguage();
+    const t = translations[lang];
 
     const healBtn = document.getElementById('healBtn');
     const fleeBtn = document.getElementById('fleeBtn');
@@ -278,7 +281,7 @@ export function updateButtonStates() {
     if (healBtn) healBtn.disabled = gameState.gold < GAME_CONFIG.HEAL_COST || gameState.hp >= stats.maxHp;
     if (fleeBtn) fleeBtn.disabled = !inBattle;
     if (shopBtn) shopBtn.disabled = gameState.gold < 50;
-    
+
     // 更新自动战斗按钮
     if (autoBtn) {
         autoBtn.textContent = isAutoBattle ? t.explorationLogs.stopBattle : t.autoBattleBtn;
@@ -363,16 +366,6 @@ export function updatePurchaseButtons() {
             shopBtn.textContent = `🏪 随机装备 (${GAME_CONFIG.EQUIPMENT_COST}💰)`;
         }
     }
-}
-
-// 计算批量购买次数
-function calculateBatchMultiplier(baseCost) {
-    if (gameState.gold >= baseCost * 100) return 100;
-    if (gameState.gold >= baseCost * 50) return 50;
-    if (gameState.gold >= baseCost * 20) return 20;
-    if (gameState.gold >= baseCost * 10) return 10;
-    if (gameState.gold >= baseCost * 5) return 5;
-    return 1;
 }
 
 export function openShopPanel() {
